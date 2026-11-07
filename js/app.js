@@ -110,20 +110,27 @@
           participantMap.set(u.uczestnikId, {
             id: u.uczestnikId,
             nick: INDEX.ucMap.get(u.uczestnikId)?.nick || 'Nieznany',
-            count: 0,
+            editions: new Set(),
             latestEdition: u.edycjaId
           });
         }
         const item = participantMap.get(u.uczestnikId);
-        item.count++;
+        item.editions.add(u.edycjaId);
         if (u.edycjaId > item.latestEdition) item.latestEdition = u.edycjaId;
       });
 
       const sortedParticipants = Array.from(participantMap.values())
+        .map(item => ({
+          id: item.id,
+          nick: item.nick,
+          count: item.editions.size,
+          latestEdition: item.latestEdition
+        }))
         .sort((a, b) => b.latestEdition - a.latestEdition || b.count - a.count);
 
       INDEX.countryStats.set(p.id, {
-        totalStarts: list.length,
+        totalStarts: uniqueEditions, // Liczba startów = liczba edycji
+        totalSongs: list.length,
         uniqueEditions,
         wins,
         participants: sortedParticipants
@@ -143,16 +150,23 @@
             id: item.panstwoId,
             nazwa: INDEX.paMap.get(item.panstwoId)?.nazwa || 'Nieznane',
             code: INDEX.paMap.get(item.panstwoId)?.code || 'xx',
-            count: 0,
+            editions: new Set(),
             latestEdition: item.edycjaId
           });
         }
         const c = countryMap.get(item.panstwoId);
-        c.count++;
+        c.editions.add(item.edycjaId);
         if (item.edycjaId > c.latestEdition) c.latestEdition = item.edycjaId;
       });
 
       const sortedCountries = Array.from(countryMap.values())
+        .map(c => ({
+          id: c.id,
+          nazwa: c.nazwa,
+          code: c.code,
+          count: c.editions.size,
+          latestEdition: c.latestEdition
+        }))
         .sort((a, b) => b.latestEdition - a.latestEdition || b.count - a.count);
 
       INDEX.participantStats.set(u.id, {
@@ -594,7 +608,7 @@
       <div class="random-user-display">
         <div class="random-user-header">
           <a href="#/uczestnik/${user.id}" class="random-user-nick">${escapeHtml(user.nick)}</a>
-          <a href="#/uczestnik/${user.id}" class="btn btn-outline btn-sm">Profil gracza →</a>
+          <a href="#/uczestnik/${user.id}" class="btn btn-outline btn-sm">Profil →</a>
         </div>
         <div class="random-user-stats">
           <span class="stat-pill">Udziały w edycjach: <strong>${stats.uniqueEditions}</strong></span>
@@ -602,9 +616,13 @@
           <span class="stat-pill">Zwycięstwa: <strong class="win-count">🏆 ${stats.wins.length}</strong></span>
         </div>
         <div style="font-size:0.85rem; color:var(--text-muted);">
-          Reprezentowane kraje (${stats.countries.length}): 
-          <span style="color:var(--text-main);">${stats.countries.slice(0, 8).map(c => renderFlag(c) + ' ' + escapeHtml(c.nazwa)).join(', ') || 'brak'}</span>
-          ${stats.countries.length > 8 ? ` i ${stats.countries.length - 8} więcej...` : ''}
+          <div style="margin-bottom:0.35rem;">Reprezentowane kraje (${stats.countries.length}):</div>
+          <div class="tag-list">
+            ${stats.countries.slice(0, 10).map(c => `
+              <a href="#/panstwo/${c.id}" class="pill-link">${renderFlag(c)} ${escapeHtml(c.nazwa)} (${c.count})</a>
+            `).join('') || '<span style="color:var(--text-muted);">brak</span>'}
+            ${stats.countries.length > 10 ? `<a href="#/uczestnik/${user.id}" class="pill-link" style="color:var(--primary); font-weight:600;">+${stats.countries.length - 10} więcej...</a>` : ''}
+          </div>
         </div>
       </div>
     `;
@@ -1129,9 +1147,19 @@
           return a.utwor.localeCompare(b.utwor, 'pl') * mult;
         }
         if (sortCol === 'edycje') {
-          const countA = (INDEX.udByPi.get(a.id) || []).length;
-          const countB = (INDEX.udByPi.get(b.id) || []).length;
-          return (countA - countB) * mult;
+          const edsA = (INDEX.udByPi.get(a.id) || []).map(u => u.edycjaId);
+          const edsB = (INDEX.udByPi.get(b.id) || []).map(u => u.edycjaId);
+          const valA = sortDir === 'desc'
+            ? (edsA.length ? Math.max(...edsA) : -1)
+            : (edsA.length ? Math.min(...edsA) : 999999);
+          const valB = sortDir === 'desc'
+            ? (edsB.length ? Math.max(...edsB) : -1)
+            : (edsB.length ? Math.min(...edsB) : 999999);
+
+          if (valA !== valB) {
+            return (valA - valB) * mult;
+          }
+          return a.utwor.localeCompare(b.utwor, 'pl');
         }
         return 0;
       });

@@ -27,33 +27,64 @@ const COUNTRY_CODES = {
 function parseScorewizLinks(scorewizStr) {
   if (!scorewizStr || !scorewizStr.trim()) return [];
   const parts = scorewizStr.split(' ; ').map(s => s.trim()).filter(Boolean);
-  return parts.map((url, idx) => {
+
+  const stageOrder = {
+    'I Ćwierćfinał': 1,
+    'II Ćwierćfinał': 2,
+    'III Ćwierćfinał': 3,
+    'IV Ćwierćfinał': 4,
+    'I Półfinał': 5,
+    'II Półfinał': 6,
+    'III Półfinał': 7,
+    'Wielki Finał': 8,
+    'Wyniki (Scorewiz)': 9,
+    'Tabela graficzna (Imgur)': 10,
+    'Fandom Wiki': 11
+  };
+
+  const parsed = parts.map((url, idx) => {
     const lower = url.toLowerCase();
-    let label = `Scorewiz #${idx + 1}`;
+    let label = '';
+
     if (lower.includes('fandom.com')) {
       label = 'Fandom Wiki';
     } else if (lower.includes('imgur.com')) {
-      label = 'Grafika / Imgur';
-    } else if (lower.includes('1-wierfina') || lower.includes('1-cwierc')) {
-      label = 'I Ćwierćfinał';
-    } else if (lower.includes('2-wierfina') || lower.includes('2-cwierc')) {
-      label = 'II Ćwierćfinał';
-    } else if (lower.includes('3-wierfina') || lower.includes('3-cwierc')) {
-      label = 'III Ćwierćfinał';
-    } else if (lower.includes('4-wierfina') || lower.includes('4-cwierc')) {
+      label = 'Tabela graficzna (Imgur)';
+    }
+    // Ćwierćfinały (4, 3, 2, 1) - both roman (iv, iii, ii, i) and digits
+    else if (/(?:iv|4)[-_]?(?:wierfina|cwierc)/i.test(lower)) {
       label = 'IV Ćwierćfinał';
-    } else if (lower.includes('i-pfina') || lower.includes('1-pfina') || lower.includes('1-semifinal') || lower.includes('i-semifinal')) {
-      label = 'I Półfinał';
-    } else if (lower.includes('ii-pfina') || lower.includes('2-pfina') || lower.includes('2-semifinal') || lower.includes('ii-semifinal')) {
-      label = 'II Półfinał';
-    } else if (lower.includes('iii-pfina') || lower.includes('3-pfina') || lower.includes('3-semifinal')) {
+    } else if (/(?:iii|3)[-_]?(?:wierfina|cwierc)/i.test(lower)) {
+      label = 'III Ćwierćfinał';
+    } else if (/(?:ii|2)[-_]?(?:wierfina|cwierc)/i.test(lower)) {
+      label = 'II Ćwierćfinał';
+    } else if (/(?:i|1)[-_]?(?:wierfina|cwierc)/i.test(lower)) {
+      label = 'I Ćwierćfinał';
+    }
+    // Półfinały (3, 2, 1) - both roman (iii, ii, i) and digits
+    else if (/(?:iii|3)[-_]?(?:pfina|semifinal|polfina)/i.test(lower)) {
       label = 'III Półfinał';
-    } else if (lower.includes('wielki-fina') || lower.includes('fina')) {
+    } else if (/(?:ii|2)[-_]?(?:pfina|semifinal|polfina)/i.test(lower)) {
+      label = 'II Półfinał';
+    } else if (/(?:i|1)[-_]?(?:pfina|semifinal|polfina)/i.test(lower)) {
+      label = 'I Półfinał';
+    }
+    // Wielki Finał / Finał
+    else if (lower.includes('wielki') || lower.includes('wielkiego') || lower.includes('fina')) {
       label = 'Wielki Finał';
     } else if (parts.length === 1 && lower.includes('scorewiz.eu')) {
       label = 'Wyniki (Scorewiz)';
+    } else {
+      label = `Scorewiz #${idx + 1}`;
     }
+
     return { url, label };
+  });
+
+  return parsed.sort((a, b) => {
+    const oA = stageOrder[a.label] || 99;
+    const oB = stageOrder[b.label] || 99;
+    return oA - oB;
   });
 }
 

@@ -924,10 +924,6 @@ main#app {
   font-weight: 600;
 }
 
-.row-winner td {
-  border-bottom-color: var(--winner-border);
-}
-
 .badge-winner {
   display: inline-flex;
   align-items: center;

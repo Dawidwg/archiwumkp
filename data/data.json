@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Archiwum KP ESCFORUM",
-    "exportedAt": "2026-11-07T11:11:14.101Z",
+    "exportedAt": "2026-11-07T12:14:36.950Z",
     "totalEditions": 100,
     "totalSongs": 2526,
     "totalCountries": 53,
@@ -289,7 +289,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/41460/ii-pfina-35-edycji-kpescforum",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/42892/wielki-fina-35-edycji-kpescforum",
@@ -307,7 +307,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/44404/ii-pfina-36-edycji-kpescforum",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/44967/wielki-fina-36-edycji-kpescforum",
@@ -325,11 +325,11 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/47326/ii-pfina-37-edycji-kpescforum",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/48313/iii-pfina-37-edycji-kpescforum",
-          "label": "I Półfinał"
+          "label": "III Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/49282/wielki-fina-37-edycji-kpescforum---wakacyjnej",
@@ -362,12 +362,12 @@
       "nazwa": "Jubileuszowa (Pożegnanie ze strefą)",
       "scorewiz": [
         {
-          "url": "https://i.imgur.com/6WfeMaT.png",
-          "label": "Grafika / Imgur"
-        },
-        {
           "url": "https://scorewiz.eu/scoreboard/sheet/54090/wielki-fina-40-edycji-kpescforum---jubileuszowa---poegnanie-ze-stref",
           "label": "Wielki Finał"
+        },
+        {
+          "url": "https://i.imgur.com/6WfeMaT.png",
+          "label": "Tabela graficzna (Imgur)"
         }
       ]
     },
@@ -381,7 +381,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/55116/ii-pfina-41-edycji-kpescforum---normalna",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/55353/wielki-fina-41-edycji-kpescforum---normalna",
@@ -399,7 +399,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/55974/ii-pfina-42-edycji-kpescforum---ballady",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/56168/wielki-fina-42-edycji-kpescforum---ballady",
@@ -417,7 +417,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/56876/ii-pfina-43-edycji-kpescforum---umpa-umpa",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/57355/wielki-fina-43-edycji-kpescforum---umpa-umpa",
@@ -435,7 +435,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/58081/ii-semifinal-44-edycji-kpescforum---w-ojczystym-jezyku",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/58321/wielki-fina-44-edycji-kpescforum---w-ojczystym-jzyku",
@@ -453,7 +453,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/59232/ii-pfina-45-edycji-kpescforum---europejska",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/59570/wielki-fina-45-edycji-kpescforum---europejska",
@@ -471,7 +471,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/61442/ii-pfina-46-edycji-kpescforum---oglnowiatowa",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/62094/wielki-fina-46-edycji-kpescforum---oglnowiatowa",
@@ -489,7 +489,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/63179/ii-pfina-47-edycji-kpescforum---duety",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/63523/wielki-fina-47-edycji-kpescforum---duety",
@@ -507,7 +507,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/67039/ii-pfina-48-edycji-kpescforum---piosenka-filmowa",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/67834/wielki-fina-48-edycji-kpescforum---piosenka-filmowa",
@@ -521,19 +521,19 @@
       "scorewiz": [
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/70933/i-wierfina-49-edycji-kpescforum---preselekcyjno-wakacyjna",
-          "label": "Wielki Finał"
+          "label": "I Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/71090/ii-wierfina-49-edycji-kpescforum---preselekcyjno-wakacyjna",
-          "label": "Wielki Finał"
+          "label": "II Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/71242/iii-wierfina-49-edycji-kpescforum---preselekcyjno-wakacyjna",
-          "label": "Wielki Finał"
+          "label": "III Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/71557/iv-wierfina-49-edycji-kpescforum---preselekcyjno-wakacyjna",
-          "label": "Wielki Finał"
+          "label": "IV Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/72362/i-pfina-49-edycji-kpescforum---preselekcyjno-wakacyjna",
@@ -541,7 +541,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/74439/ii-pfina-49-edycji-kpescforum---preselekcyjno-wakacyjna",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/75258/wielki-fina-49-edycji-kpescforum---preselekcyjno-wakacyjna",
@@ -555,19 +555,19 @@
       "scorewiz": [
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/76460/i-wierfina-50-edycji-kpescforum---krajoznawcza",
-          "label": "Wielki Finał"
+          "label": "I Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/76462/ii-wierfina-50-edycji-kpescforum---jubileuszowa---krajoznawcza",
-          "label": "Wielki Finał"
+          "label": "II Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/76618/iii-wierfina-50-edycji-kpescforum---jubileuszowa---krajoznawcza",
-          "label": "Wielki Finał"
+          "label": "III Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/76680/iv-wierfina-50-edycji-kpescforum---jubileuszowa---krajoznawcza",
-          "label": "Wielki Finał"
+          "label": "IV Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/76851/i-pfina-50-edycji-kpescforum---jubileuszowa---krajoznawcza",
@@ -575,7 +575,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/77147/ii-pfina-50-edycji-kpescforum---jubileuszowa---krajoznawcza",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/77573/wielki-fina-50-edycji-kpescforum---jubileuszowa---krajoznawcza",
@@ -593,7 +593,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/78842/51-edycja-kpescforum---azjatycka-wyniki-ii-pfinau/2zkqpwmQ",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/79070/51-edycja-kpescforum---azjatycka-wyniki-wielkiego-finau/C5FRWcxe",
@@ -611,7 +611,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/80029/52-edycja-kpescforum---azjatycka-wyniki-ii-pfinau/d9fKMZ3N",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/80291/52-edycja-kpescforum---covery-wyniki-wielkiego-finau/CjpUmSvA",
@@ -624,12 +624,12 @@
       "nazwa": "Normalna",
       "scorewiz": [
         {
-          "url": "https://scorewiz.eu/scoreboard/sheet/81580/53-edycja-kpescforum---normalna-wyniki-ii-pfinau/VKkz6xun",
+          "url": "https://scorewiz.eu/scoreboard/sheet/81579/53-edycja-kpescforum---normalna-wyniki-i-pfinau/9YmLrpDk",
           "label": "I Półfinał"
         },
         {
-          "url": "https://scorewiz.eu/scoreboard/sheet/81579/53-edycja-kpescforum---normalna-wyniki-i-pfinau/9YmLrpDk",
-          "label": "I Półfinał"
+          "url": "https://scorewiz.eu/scoreboard/sheet/81580/53-edycja-kpescforum---normalna-wyniki-ii-pfinau/VKkz6xun",
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/81877/53-edycja-kpescforum---normalna-wyniki-wielkiego-finau/C36vTqVw",
@@ -647,7 +647,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/82613/54-edycja-kpescforum---rockmetal-wyniki-ii-pfinau/Ms5MEBq4",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/82859/54-edycja-kpescforum---rockmetal-wyniki-wielkiego-finau",
@@ -665,7 +665,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/84201/55-edycja-kpescforum---oglnowiatowa-wyniki-ii-pfinau/hFCRswm6",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/84558/55-edycja-kpescforum---oglnowiatowa-wyniki-wielkiego-finau/TCAW3mG6",
@@ -683,7 +683,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/85689/56-edycja-kpescforum---krajowa-wyniki-ii-pfinau/bUfkhMGY",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/86874/56-edycja-kpescforum---krajowa-wyniki-wielkiego-finau/ECTF4FPq",
@@ -701,7 +701,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/88659/57-edycja-kpescforum---klasykalata-90-wyniki-ii-pfinau/s7XHfYKp",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/89453/57-edycja-kpescforum---klasykalata-90-wyniki-wielkiego-finau/XYCPGTqb",
@@ -719,7 +719,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/92841/58-edycja-kpescforum---zespoy-wyniki-ii-pfinau/eBf467XK",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/93432/58-edycja-kpescforum---zespoy-wyniki-wielkiego-finau/2KjEtLEz",
@@ -733,19 +733,19 @@
       "scorewiz": [
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/96594/59-edycja-kpescforum---wakacyjna-wyniki-i-wierfinau/QgKQvLL3",
-          "label": "Wielki Finał"
+          "label": "I Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/97059/59-edycja-kpescforum---wakacyjna---wyniki-ii-wierfinau/8yxUbz9M",
-          "label": "Wielki Finał"
+          "label": "II Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/97451/59-edycja-kpescforum---wakacyjna-wyniki-iii-wierfinau/aUcQGrDz",
-          "label": "Wielki Finał"
+          "label": "III Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/98140/59-edycja-kpescforum---wakacyjna-wyniki-iv-wierfinau/aHTpbsyS",
-          "label": "Wielki Finał"
+          "label": "IV Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/98724/59-edycja-kpescforum---wakacyjna-wyniki-i-pfinau/Bn82kLZg",
@@ -753,7 +753,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/99296/59-edycja-kpescforum---wakacyjna-wyniki-ii-pfinau/9y24Z8Bg",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/99926/59-edycja-kpescforum---wakacyjna-wyniki-wielkiego-finau/eZKrLfLp",
@@ -767,19 +767,19 @@
       "scorewiz": [
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/101469/60-edycja-kpescforum---jubileuszowa-wyniki-i-wierfinau/Sw9a6M2n",
-          "label": "Wielki Finał"
+          "label": "I Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/101470/60-edycja-kpescforum---jubileuszowa-wyniki-ii-wierfinau/7dACFTtw",
-          "label": "Wielki Finał"
+          "label": "II Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/101792/60-edycja-kpescforum---jubileuszowa-wyniki-iii-wierfinau/2mhdUrnt",
-          "label": "Wielki Finał"
+          "label": "III Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/101793/60-edycja-kpescforum---jubileuszowa-wyniki-iv-wierfinau/tVeHs3nF",
-          "label": "Wielki Finał"
+          "label": "IV Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/102233/60-edycja-kpescforum---jubileuszowa-wyniki-i-pfinau/gWPS373Y",
@@ -787,7 +787,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/102247/60-edycja-kpescforum---jubileuszowa-wyniki-ii-pfinau/F6tSv8fH",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/102510/60-edycja-kpescforum---jubileuszowa-wyniki-wielkiego-finau/PVNLGJMq",
@@ -805,7 +805,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/103526/61-edycja-kpescforum-wyniki-ii-pfinau/Bks4Px2p",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/104143/61-edycja-kpescforum-wyniki-wielkiego-finau/ncepFzAZ",
@@ -823,7 +823,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/104916/62-edycja-kpescforum---preselekcyjna-wyniki-ii-pfinau/5ynycHv5",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/105219/62-edycja-kpescforum---preselekcyjna-wyniki-wielkiego-finau/g5agbYxH",
@@ -841,7 +841,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/106333/63-edycja-kpescforum---elektroniczne-umpa-umpa-wyniki-ii-pfinau/Mn6HfdSC",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/106718/63-edycja-kpescforum---elektroniczne-umpa-umpa-wyniki-wielkiego-finau/RMceJTjC",
@@ -859,7 +859,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/107708/64-edycja-kpescforum---afrykaska-wyniki-ii-pfinau/rS6aNbwQ",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/108214/64-edycja-kpescforum---afrykaska-wyniki-wielkiego-finau/HbNjyvt9",
@@ -877,7 +877,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/109489/65-edycja-kpescforum---ballady-wyniki-ii-pfinau/YUbmyTAy",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/109903/65-edycja-kpescforum---ballady-wyniki-wielkiego-finau/qfKphcy4",
@@ -895,7 +895,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/111786/66-edycja-kpescforum---wokal-mski-wyniki-ii-pfinau/zVfhsmeQ",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/112165/66-edycja-kpescforum---wokal-mski-wyniki-wielkiego-finau/9Hm8J6Rn",
@@ -913,7 +913,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/114735/67-edycja-kpescforum---filmowa-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/115353/67-edycja-kpescforum---filmowa-wyniki-wielkiego-finau",
@@ -931,7 +931,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/117035/68-edycja-kpescforum---normalna-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/117548/68-edycja-kpescforum---normalna-wyniki-wielkiego-finau",
@@ -945,19 +945,19 @@
       "scorewiz": [
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/124413/69-edycja-kpescforum---wakacyjna-joke-entry-wyniki-i-wierfinau",
-          "label": "Wielki Finał"
+          "label": "I Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/125365/69-edycja-kpescforum---wakacyjna-joke-entry-wyniki-ii-wierfinau",
-          "label": "Wielki Finał"
+          "label": "II Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/125656/69-edycja-kpescforum---wakacyjna-joke-entry-wyniki-iii-wierfinau",
-          "label": "Wielki Finał"
+          "label": "III Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/126411/69-edycja-kpescforum---wakacyjna-joke-entry-wyniki-iv-wierfinau",
-          "label": "Wielki Finał"
+          "label": "IV Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/127336/69-edycja-kpescforum---wakacyjna-joke-entry-wyniki-i-pfinau",
@@ -965,7 +965,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/127944/69-edycja-kpescforum---wakacyjna-joke-entry-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/128603/69-edycja-kpescforum---wakacyjna-joke-entry-wyniki-wielkiego-finau",
@@ -979,19 +979,19 @@
       "scorewiz": [
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/130076/70-edycja-kpescforum---jubileuszowa-wyniki-i-wierfinau",
-          "label": "Wielki Finał"
+          "label": "I Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/130077/70-edycja-kpescforum---jubileuszowa-wyniki-ii-wierfinau",
-          "label": "Wielki Finał"
+          "label": "II Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/130701/70-edycja-kpescforum---jubileuszowa-wyniki-iii-wierfinau",
-          "label": "Wielki Finał"
+          "label": "III Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/130702/70-edycja-kpescforum---jubileuszowa-wyniki-iv-wierfinau",
-          "label": "Wielki Finał"
+          "label": "IV Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/130897/70-edycja-kpescforum---jubileuszowa-wyniki-i-pfinau",
@@ -999,7 +999,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/130899/70-edycja-kpescforum---jubileuszowa-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/131329/70-edycja-kpescforum---jubileuszowa-wyniki-wielkiego-finau",
@@ -1017,7 +1017,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/134089/71-edycja-kpescforum---normalna-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/134605/71-edycja-kpescforum---normalna-wyniki-wielkiego-finau",
@@ -1035,7 +1035,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/135892/72-edycja-kpescforum---oglnowiatowa-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/136358/72-edycja-kpescforum---oglnowiatowa-wyniki-wielkiego-finau",
@@ -1053,7 +1053,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/137819/73-edycja-kpescforum---artyci-eurowizyjni-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/138160/73-edycja-kpescforum---artyci-eurowizyjni-wyniki-wielkiego-finau",
@@ -1071,7 +1071,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/139594/74-edycja-kpescforum---covery-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/139979/74-edycja-kpescforum---covery-wyniki-wielkiego-finau",
@@ -1089,7 +1089,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/141332/75-edycja-kpescforum---krajowa-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/141815/75-edycja-kpescforum---krajowa-wyniki-wielkiego-finau",
@@ -1107,7 +1107,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/144991/76-edycja-kpescforum---artyci-z-talent-shows-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/145317/76-edycja-kpescforum---artyci-z-talent-shows-wyniki-wielkiego-finau",
@@ -1125,7 +1125,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/148137/77-edycja-kpescforum---rockmetal-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/148769/77-edycja-kpescforum---rockmetal-wyniki-wielkiego-finau",
@@ -1143,7 +1143,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/153593/78-edycja-kpescforum---instrumentalna-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/154442/78-edycja-kpescforum---instrumentalna-wyniki-wielkiego-finau",
@@ -1157,19 +1157,19 @@
       "scorewiz": [
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/157140/79-edycja-kpescforum---wakacyjna--edycja-2-szansy-wyniki-i-wierfinau",
-          "label": "Wielki Finał"
+          "label": "I Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/158073/79-edycja-kpescforum---wakacyjna--edycja-2-szansy-wyniki-ii-wierfinau",
-          "label": "Wielki Finał"
+          "label": "II Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/159106/79-edycja-kpescforum---wakacyjna--edycja-2-szansy-wyniki-iii-wierfinau",
-          "label": "Wielki Finał"
+          "label": "III Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/159919/79-edycja-kpescforum---wakacyjna--edycja-2-szansy-wyniki-iv-wierfinau",
-          "label": "Wielki Finał"
+          "label": "IV Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/160623/79-edycja-kpescforum---wakacyjna--edycja-2-szansy-wyniki-i-pfinau",
@@ -1177,7 +1177,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/161347/79-edycja-kpescforum---wakacyjna--edycja-2-szansy-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/162172/79-edycja-kpescforum---wakacyjna--edycja-2-szansy-wyniki-wielkiego-finau",
@@ -1191,19 +1191,19 @@
       "scorewiz": [
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/163515/80-edycja-kpescforum---jubileuszowa-wyniki-i-wierfinau",
-          "label": "Wielki Finał"
+          "label": "I Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/163516/80-edycja-kpescforum---jubileuszowa-wyniki-ii-wierfinau",
-          "label": "Wielki Finał"
+          "label": "II Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/163948/80-edycja-kpescforum---jubileuszowa-wyniki-iii-wierfinau",
-          "label": "Wielki Finał"
+          "label": "III Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/163949/80-edycja-kpescforum---jubileuszowa-wyniki-iv-wierfinau",
-          "label": "Wielki Finał"
+          "label": "IV Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/164391/80-edycja-kpescforum---jubileuszowa-wyniki-i-pfinau",
@@ -1211,7 +1211,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/164392/80-edycja-kpescforum---jubileuszowa-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/164749/80-edycja-kpescforum---jubileuszowa-wyniki-wielkiego-finau",
@@ -1229,7 +1229,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/166030/81-edycja-kpescforum---normalna-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/166309/81-edycja-kpescforum---normalna-wyniki-wielkiego-finau",
@@ -1247,7 +1247,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/167771/82-edycja-kpescforum---europejska-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/168183/82-edycja-kpescforum---europejska-wyniki-wielkiego-finau",
@@ -1265,7 +1265,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/169242/83-edycja-kpescforum---nowoci-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/169583/83-edycja---nowoci-wyniki-wielkiego-finau",
@@ -1283,7 +1283,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/171319/84-edycja-kpescforum---z-przesaniem-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/171498/84-edycja---z-przesaniem-wyniki-wielkiego-finau",
@@ -1301,7 +1301,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/172524/85-edycja-kpescforum---normalna-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/173027/85-edycja-kpescforum---normalna-wyniki-wielkiego-finau",
@@ -1319,7 +1319,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/181836/86-edycja-kpescforum---niesinglowa-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/182452/86-edycja-kpescforum---niesinglowa-wyniki-wielkiego-finau",
@@ -1337,7 +1337,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/184301/87-edycja-kpescforum---zamiana-strefami-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/184920/87-edycja-kpescforum---zamiana-strefami-wyniki-wielkiego-finau",
@@ -1351,19 +1351,19 @@
       "scorewiz": [
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/186091/88-edycja-kpescforum---wakacyjna-wyniki-i-wierfinau",
-          "label": "Wielki Finał"
+          "label": "I Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/186835/88-edycja-kpescforum---wakacyjna-wyniki-ii-wierfinau",
-          "label": "Wielki Finał"
+          "label": "II Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/187347/88-edycja-kpescforum---wakacyjna-wyniki-iii-wierfinau",
-          "label": "Wielki Finał"
+          "label": "III Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/188118/88-edycja-kpescforum---wakacyjna-wyniki-iv-wierfinau",
-          "label": "Wielki Finał"
+          "label": "IV Ćwierćfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/188775/88-edycja-kpescforum---wakacyjna-wyniki-i-pfinau",
@@ -1371,7 +1371,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/189394/88-edycja-kpescforum---wakacyjna-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/189776/88-edycja-kpescforum---wakacyjna-wyniki-wielkiego-finau",
@@ -1389,7 +1389,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/191163/89-edycja-kpescforum---polskojzyczna-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/191350/89-edycja-kpescforum---polskojzyczna-wyniki-wielkiego-finau",
@@ -1407,7 +1407,7 @@
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/192242/90-edycja-kpescforum---krajowa-wyniki-ii-pfinau",
-          "label": "I Półfinał"
+          "label": "II Półfinał"
         },
         {
           "url": "https://scorewiz.eu/scoreboard/sheet/192511/90-edycja-kpescforum---krajowa-wyniki-wielkiego-finau",
