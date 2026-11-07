@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#d84def">
+  <meta name="description" content="Archiwum Konkursu Piosenki ESCFORUM - 100 edycji, utwory, zwycięzcy, państwa i uczestnicy.">
+  <title>Archiwum KP ESCFORUM</title>
+  
+  <!-- Modern Font Stack & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#/" class="brand">
+        <span class="brand-title">🎤 Archiwum KP ESCFORUM</span>
+      </a>
+
+      <!-- Desktop & Mobile Navigation -->
+      <nav id="site-nav" class="site-nav">
+        <a href="#/" class="nav-link active">Strona główna</a>
+        <a href="#/edycje" class="nav-link">Edycje</a>
+        <a href="#/piosenki" class="nav-link">Piosenki</a>
+        <a href="#/panstwa" class="nav-link">Państwa</a>
+        <a href="#/uczestnicy" class="nav-link">Uczestnicy</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="header-actions">
+        <button id="theme-toggle" class="icon-btn" title="Zmień motyw" aria-label="Zmień motyw">🌙</button>
+        <button id="mobile-nav-toggle" class="icon-btn mobile-toggle" title="Menu" aria-label="Otwórz menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Root -->
+  <main id="app">
+    <div class="empty-state">
+      <div class="empty-icon">⏳</div>
+      <h2>Ładowanie archiwum...</h2>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div>
+        <strong>Archiwum Konkursu Piosenki ESCFORUM</strong> &bull; Dawid Włodarczyk
+      </div>
+    </div>
+  </footer>
+
+  <!-- Static Data & App Scripts -->
+  <script src="data/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
