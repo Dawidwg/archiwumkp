@@ -13,7 +13,6 @@
     currentRoute: '',
     songSearch: '',
     editionSearch: '',
-    editionSort: 'desc',
     countrySearch: '',
     participantSearch: ''
   };
@@ -379,7 +378,7 @@
   function renderFlag(countryOrName, isLarge = false) {
     const code = getFlagCode(countryOrName);
     const name = typeof countryOrName === 'string' ? countryOrName : countryOrName?.nazwa || '';
-    // Lipis flag-icons 4:3 standardized SVGs: every country (including Switzerland, Kosovo, Faroe Islands) has the exact same 4:3 ratio
+    // Lipis flag-icons 4:3 standardized SVGs
     const url = `https://cdn.jsdelivr.net/gh/lipis/flag-icons@main/flags/4x3/${code.toLowerCase()}.svg`;
     return `<img src="${url}" alt="${escapeHtml(name)}" class="flag-img${isLarge ? ' flag-lg' : ''}" loading="lazy">`;
   }
@@ -491,7 +490,7 @@
         </div>
       </section>
 
-      <!-- Hall of Fame / Statistics -->
+      <!-- Hall of Fame / Records -->
       <section class="fame-section">
         <h2 class="section-heading">👑 Rekordziści konkursu</h2>
         <div class="fame-grid">
@@ -510,7 +509,7 @@
                   </div>
                   <div style="display:flex; align-items:center; gap:0.6rem;">
                     <span style="font-size:0.85rem; color:var(--text-muted);">${formatEditionsAndSongs(item.stats.uniqueEditions, item.stats.totalSongs)}</span>
-                    <span class="badge-winner">🏆 ${item.stats.wins.length}</span>
+                    <strong class="win-count">🏆 ${item.stats.wins.length}</strong>
                   </div>
                 </li>
               `).join('')}
@@ -532,8 +531,8 @@
                     <a href="#/panstwo/${item.p.id}" style="font-weight:700;">${escapeHtml(item.p.nazwa)}</a>
                   </div>
                   <div style="display:flex; align-items:center; gap:0.6rem;">
-                    <span style="font-size:0.85rem; color:var(--text-muted);">${item.stats.totalStarts} startów</span>
-                    <span class="badge-winner">🏆 ${item.stats.wins.length}</span>
+                    <span style="font-size:0.85rem; color:var(--text-muted);">${item.stats.totalStarts} ${pluralize(item.stats.totalStarts, 'start', 'starty', 'startów')}</span>
+                    <strong class="win-count">🏆 ${item.stats.wins.length}</strong>
                   </div>
                 </li>
               `).join('')}
@@ -590,9 +589,6 @@
   function renderRandomUserBox(user) {
     if (!user) return '<p>Brak uczestników w bazie.</p>';
     const stats = INDEX.participantStats.get(user.id) || { uniqueEditions: 0, totalSongs: 0, wins: [], countries: [] };
-    const winsText = stats.wins.length > 0 
-      ? `<span class="badge-winner" style="margin-left:0;">🏆 ${stats.wins.length} ${pluralize(stats.wins.length, 'wygrana', 'wygrane', 'wygranych')} (${stats.wins.map(w => '#' + w).join(', ')})</span>`
-      : '<span style="color:var(--text-muted); font-size:0.88rem;">0 zwycięstw</span>';
 
     return `
       <div class="random-user-display">
@@ -603,7 +599,7 @@
         <div class="random-user-stats">
           <span class="stat-pill">Udziały w edycjach: <strong>${stats.uniqueEditions}</strong></span>
           <span class="stat-pill">Zgłoszone piosenki: <strong>${stats.totalSongs}</strong></span>
-          <span class="stat-pill">${winsText}</span>
+          <span class="stat-pill">Zwycięstwa: <strong class="win-count">🏆 ${stats.wins.length}</strong></span>
         </div>
         <div style="font-size:0.85rem; color:var(--text-muted);">
           Reprezentowane kraje (${stats.countries.length}): 
@@ -775,6 +771,9 @@
      ========================================================================== */
 
   function renderEdycje(container) {
+    let sortCol = 'id';
+    let sortDir = 'desc';
+
     container.innerHTML = `
       <div class="page-header">
         <h1 class="page-title">🏆 Edycje Konkursu</h1>
@@ -785,21 +784,18 @@
           <span class="filter-icon">🔍</span>
           <input type="text" id="edition-filter" class="filter-input" placeholder="Szukaj..." value="${escapeHtml(STATE.editionSearch)}">
         </div>
-        <button id="toggle-edition-sort" class="btn btn-outline btn-sm">
-          ${STATE.editionSort === 'desc' ? 'Sortuj: Od najnowszych (100-1) ▼' : 'Sortuj: Od najstarszych (1-100) ▲'}
-        </button>
       </div>
 
       <div class="table-wrapper">
-        <table class="responsive-table">
+        <table class="responsive-table" id="editions-table">
           <thead>
             <tr>
-              <th style="width: 70px; text-align: center;">Edycja</th>
-              <th>Nazwa</th>
-              <th style="width: 45px; text-align: center;">YT</th>
-              <th>Zwycięski Utwór</th>
-              <th>Zwycięskie Państwo</th>
-              <th>Zwycięzca</th>
+              <th data-sort="id" style="width: 70px; text-align: center;">Edycja</th>
+              <th data-sort="nazwa">Nazwa</th>
+              <th style="width: 45px; text-align: center; cursor: default;">YT</th>
+              <th data-sort="utwor">Zwycięski Utwór</th>
+              <th data-sort="panstwo">Zwycięskie Państwo</th>
+              <th data-sort="uczestnik">Zwycięzca</th>
             </tr>
           </thead>
           <tbody id="editions-table-body"></tbody>
@@ -808,18 +804,12 @@
     `;
 
     const filterInput = document.getElementById('edition-filter');
-    const sortBtn = document.getElementById('toggle-edition-sort');
     const tableBody = document.getElementById('editions-table-body');
+    const table = document.getElementById('editions-table');
 
     function updateTable() {
       const q = STATE.editionSearch.toLowerCase().trim();
       let list = DB.edycje.slice();
-
-      if (STATE.editionSort === 'desc') {
-        list.sort((a, b) => b.id - a.id);
-      } else {
-        list.sort((a, b) => a.id - b.id);
-      }
 
       if (q) {
         list = list.filter(e => {
@@ -837,6 +827,35 @@
             (user && user.nick.toLowerCase().includes(q));
         });
       }
+
+      // Column sorting
+      const mult = sortDir === 'desc' ? -1 : 1;
+      list.sort((a, b) => {
+        if (sortCol === 'id') {
+          return (a.id - b.id) * mult;
+        }
+        if (sortCol === 'nazwa') {
+          return a.nazwa.localeCompare(b.nazwa, 'pl') * mult;
+        }
+        const winA = INDEX.winnerByEd.get(a.id);
+        const winB = INDEX.winnerByEd.get(b.id);
+        if (sortCol === 'utwor') {
+          const sA = winA ? (INDEX.piMap.get(winA.piosenkaId)?.utwor || '') : '';
+          const sB = winB ? (INDEX.piMap.get(winB.piosenkaId)?.utwor || '') : '';
+          return sA.localeCompare(sB, 'pl') * mult;
+        }
+        if (sortCol === 'panstwo') {
+          const pA = winA ? (INDEX.paMap.get(winA.panstwoId)?.nazwa || '') : '';
+          const pB = winB ? (INDEX.paMap.get(winB.panstwoId)?.nazwa || '') : '';
+          return pA.localeCompare(pB, 'pl') * mult;
+        }
+        if (sortCol === 'uczestnik') {
+          const uA = winA ? (INDEX.ucMap.get(winA.uczestnikId)?.nick || '') : '';
+          const uB = winB ? (INDEX.ucMap.get(winB.uczestnikId)?.nick || '') : '';
+          return uA.localeCompare(uB, 'pl') * mult;
+        }
+        return 0;
+      });
 
       if (list.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="6" class="empty-state">Brak edycji spełniających kryteria.</td></tr>`;
@@ -874,14 +893,22 @@
       }).join('');
     }
 
-    filterInput.addEventListener('input', (e) => {
-      STATE.editionSearch = e.target.value;
-      updateTable();
+    // Attach click sorting to headers
+    table.querySelectorAll('th[data-sort]').forEach(th => {
+      th.addEventListener('click', () => {
+        const col = th.getAttribute('data-sort');
+        if (sortCol === col) {
+          sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+          sortCol = col;
+          sortDir = col === 'id' ? 'desc' : 'asc';
+        }
+        updateTable();
+      });
     });
 
-    sortBtn.addEventListener('click', () => {
-      STATE.editionSort = STATE.editionSort === 'desc' ? 'asc' : 'desc';
-      sortBtn.textContent = STATE.editionSort === 'desc' ? 'Sortuj: Od najnowszych (100-1) ▼' : 'Sortuj: Od najstarszych (1-100) ▲';
+    filterInput.addEventListener('input', (e) => {
+      STATE.editionSearch = e.target.value;
       updateTable();
     });
 
@@ -900,14 +927,15 @@
     }
 
     const participations = INDEX.udByEd.get(id) || [];
-    // Sort entries alphabetically by country name
     const entries = participations.map(u => ({
       udzial: u,
       song: INDEX.piMap.get(u.piosenkaId),
       country: INDEX.paMap.get(u.panstwoId),
       user: INDEX.ucMap.get(u.uczestnikId)
-    })).sort((a, b) => (a.country?.nazwa || '').localeCompare(b.country?.nazwa || '', 'pl'));
+    }));
 
+    let sortCol = 'panstwo';
+    let sortDir = 'asc';
     const maxEd = DB.edycje.length;
 
     container.innerHTML = `
@@ -935,7 +963,7 @@
         </div>
 
         <!-- Filter within this edition -->
-        <div class="page-controls" style="margin-bottom: 1rem;">
+        <div class="page-controls" style="margin-bottom: 0.75rem;">
           <div class="filter-input-wrap">
             <span class="filter-icon">🔍</span>
             <input type="text" id="ed-entry-filter" class="filter-input" placeholder="Szukaj...">
@@ -943,13 +971,13 @@
         </div>
 
         <div class="table-wrapper" style="margin-bottom: 0;">
-          <table class="responsive-table">
+          <table class="responsive-table" id="ed-entries-table">
             <thead>
               <tr>
-                <th style="width: 45px; text-align: center;">YT</th>
-                <th>Utwór</th>
-                <th>Państwo</th>
-                <th>Uczestnik</th>
+                <th style="width: 45px; text-align: center; cursor: default;">YT</th>
+                <th data-sort="utwor">Utwór</th>
+                <th data-sort="panstwo">Państwo</th>
+                <th data-sort="uczestnik">Uczestnik</th>
               </tr>
             </thead>
             <tbody id="ed-entries-body"></tbody>
@@ -960,10 +988,11 @@
 
     const filterInput = document.getElementById('ed-entry-filter');
     const tableBody = document.getElementById('ed-entries-body');
+    const table = document.getElementById('ed-entries-table');
 
     function updateEntriesTable() {
       const q = (filterInput && filterInput.value ? filterInput.value : '').toLowerCase().trim();
-      let list = entries;
+      let list = entries.slice();
 
       if (q) {
         list = list.filter(item => 
@@ -972,6 +1001,20 @@
           (item.user?.nick && item.user.nick.toLowerCase().includes(q))
         );
       }
+
+      const mult = sortDir === 'desc' ? -1 : 1;
+      list.sort((a, b) => {
+        if (sortCol === 'utwor') {
+          return (a.song?.utwor || '').localeCompare(b.song?.utwor || '', 'pl') * mult;
+        }
+        if (sortCol === 'panstwo') {
+          return (a.country?.nazwa || '').localeCompare(b.country?.nazwa || '', 'pl') * mult;
+        }
+        if (sortCol === 'uczestnik') {
+          return (a.user?.nick || '').localeCompare(b.user?.nick || '', 'pl') * mult;
+        }
+        return 0;
+      });
 
       if (list.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="4" class="empty-state">Brak wyników wyszukiwania.</td></tr>`;
@@ -1001,10 +1044,23 @@
       }).join('');
     }
 
+    table.querySelectorAll('th[data-sort]').forEach(th => {
+      th.addEventListener('click', () => {
+        const col = th.getAttribute('data-sort');
+        if (sortCol === col) {
+          sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+          sortCol = col;
+          sortDir = 'asc';
+        }
+        updateEntriesTable();
+      });
+    });
+
     filterInput.addEventListener('input', updateEntriesTable);
     updateEntriesTable();
 
-    // Nav buttons (only exist if id > 1 or id < maxEd)
+    // Nav buttons
     const prevBtn = document.getElementById('prev-ed-btn');
     const nextBtn = document.getElementById('next-ed-btn');
     if (prevBtn) {
@@ -1025,6 +1081,9 @@
       STATE.songSearch = searchParams.get('q');
     }
 
+    let sortCol = 'utwor';
+    let sortDir = 'asc';
+
     container.innerHTML = `
       <div class="page-header">
         <h1 class="page-title">🎵 Piosenki</h1>
@@ -1039,12 +1098,12 @@
       </div>
 
       <div class="table-wrapper">
-        <table class="responsive-table">
+        <table class="responsive-table" id="songs-table">
           <thead>
             <tr>
-              <th style="width: 45px; text-align: center;">YT</th>
-              <th>Utwór</th>
-              <th>Edycje (występy)</th>
+              <th style="width: 45px; text-align: center; cursor: default;">YT</th>
+              <th data-sort="utwor">Utwór</th>
+              <th data-sort="edycje">Edycje (występy)</th>
             </tr>
           </thead>
           <tbody id="songs-table-body"></tbody>
@@ -1054,14 +1113,28 @@
 
     const filterInput = document.getElementById('songs-filter');
     const tableBody = document.getElementById('songs-table-body');
+    const table = document.getElementById('songs-table');
 
     function updateSongsView() {
       const q = STATE.songSearch.toLowerCase().trim();
-      let list = DB.piosenki;
+      let list = DB.piosenki.slice();
 
       if (q) {
         list = list.filter(p => p.utwor.toLowerCase().includes(q));
       }
+
+      const mult = sortDir === 'desc' ? -1 : 1;
+      list.sort((a, b) => {
+        if (sortCol === 'utwor') {
+          return a.utwor.localeCompare(b.utwor, 'pl') * mult;
+        }
+        if (sortCol === 'edycje') {
+          const countA = (INDEX.udByPi.get(a.id) || []).length;
+          const countB = (INDEX.udByPi.get(b.id) || []).length;
+          return (countA - countB) * mult;
+        }
+        return 0;
+      });
 
       if (list.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="3" class="empty-state">Brak utworów spełniających kryteria.</td></tr>`;
@@ -1092,6 +1165,19 @@
       }).join('');
     }
 
+    table.querySelectorAll('th[data-sort]').forEach(th => {
+      th.addEventListener('click', () => {
+        const col = th.getAttribute('data-sort');
+        if (sortCol === col) {
+          sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+          sortCol = col;
+          sortDir = col === 'edycje' ? 'desc' : 'asc';
+        }
+        updateSongsView();
+      });
+    });
+
     filterInput.addEventListener('input', (e) => {
       STATE.songSearch = e.target.value;
       updateSongsView();
@@ -1105,6 +1191,9 @@
      ========================================================================== */
 
   function renderPanstwa(container) {
+    let sortCol = 'nazwa';
+    let sortDir = 'asc';
+
     container.innerHTML = `
       <div class="page-header">
         <h1 class="page-title">🌍 Państwa</h1>
@@ -1118,13 +1207,13 @@
       </div>
 
       <div class="table-wrapper">
-        <table class="responsive-table">
+        <table class="responsive-table" id="countries-table">
           <thead>
             <tr>
-              <th>Państwo</th>
-              <th style="width: 100px; text-align: center;">Starty</th>
-              <th style="width: 110px; text-align: center;">Zwycięstwa</th>
-              <th>Prowadzący uczestnicy</th>
+              <th data-sort="nazwa">Państwo</th>
+              <th data-sort="starty" style="width: 80px; text-align: center;">Starty</th>
+              <th data-sort="wygrane" style="width: 95px; text-align: center;">Zwycięstwa</th>
+              <th data-sort="uczestnicy">Prowadzący uczestnicy</th>
             </tr>
           </thead>
           <tbody id="countries-table-body"></tbody>
@@ -1134,10 +1223,11 @@
 
     const filterInput = document.getElementById('countries-filter');
     const tableBody = document.getElementById('countries-table-body');
+    const table = document.getElementById('countries-table');
 
     function updateCountriesTable() {
       const q = STATE.countrySearch.toLowerCase().trim();
-      let list = DB.panstwa.slice().sort((a, b) => a.nazwa.localeCompare(b.nazwa, 'pl'));
+      let list = DB.panstwa.slice();
 
       if (q) {
         list = list.filter(p => {
@@ -1146,6 +1236,26 @@
           return stats && stats.participants.some(item => item.nick.toLowerCase().includes(q));
         });
       }
+
+      const mult = sortDir === 'desc' ? -1 : 1;
+      list.sort((a, b) => {
+        const stA = INDEX.countryStats.get(a.id) || { totalStarts: 0, wins: [], participants: [] };
+        const stB = INDEX.countryStats.get(b.id) || { totalStarts: 0, wins: [], participants: [] };
+
+        if (sortCol === 'nazwa') {
+          return a.nazwa.localeCompare(b.nazwa, 'pl') * mult;
+        }
+        if (sortCol === 'starty') {
+          return (stA.totalStarts - stB.totalStarts) * mult;
+        }
+        if (sortCol === 'wygrane') {
+          return (stA.wins.length - stB.wins.length) * mult;
+        }
+        if (sortCol === 'uczestnicy') {
+          return (stA.participants.length - stB.participants.length) * mult;
+        }
+        return 0;
+      });
 
       if (list.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="4" class="empty-state">Brak państw spełniających kryteria.</td></tr>`;
@@ -1169,7 +1279,7 @@
               <strong>${stats.totalStarts}</strong>
             </td>
             <td style="text-align: center;">
-              ${stats.wins.length > 0 ? `<span class="badge-winner">🏆 ${stats.wins.length}</span>` : '<span style="color:var(--text-muted);">-</span>'}
+              ${stats.wins.length > 0 ? `<strong class="win-count">🏆 ${stats.wins.length}</strong>` : '<span style="color:var(--text-muted);">-</span>'}
             </td>
             <td>
               <div class="tag-list">${participantsHtml || '-'}</div>
@@ -1178,6 +1288,19 @@
         `;
       }).join('');
     }
+
+    table.querySelectorAll('th[data-sort]').forEach(th => {
+      th.addEventListener('click', () => {
+        const col = th.getAttribute('data-sort');
+        if (sortCol === col) {
+          sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+          sortCol = col;
+          sortDir = (col === 'starty' || col === 'wygrane' || col === 'uczestnicy') ? 'desc' : 'asc';
+        }
+        updateCountriesTable();
+      });
+    });
 
     filterInput.addEventListener('input', (e) => {
       STATE.countrySearch = e.target.value;
@@ -1199,16 +1322,18 @@
     }
 
     const stats = INDEX.countryStats.get(id) || { totalStarts: 0, wins: [], participants: [] };
-    const participations = (INDEX.udByPa.get(id) || []).slice().sort((a, b) => b.edycjaId - a.edycjaId);
+    const participations = (INDEX.udByPa.get(id) || []).slice();
+    let sortCol = 'edycja';
+    let sortDir = 'desc';
     const maxPa = DB.panstwa.length;
 
     container.innerHTML = `
       <div class="detail-card">
         <div class="detail-header-row">
-          <div style="display: flex; align-items: center; gap: 1rem;">
+          <div style="display: flex; align-items: center; gap: 0.85rem;">
             ${renderFlag(country, true)}
             <div>
-              <div style="font-size: 0.9rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em;">Szczegóły Reprezentacji</div>
+              <div style="font-size: 0.85rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em;">Szczegóły Reprezentacji</div>
               <h1 class="page-title" style="margin: 0;">${escapeHtml(country.nazwa)}</h1>
             </div>
           </div>
@@ -1219,13 +1344,13 @@
           </div>
         </div>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem;">
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
           <span class="stat-pill">Liczba startów: <strong>${stats.totalStarts}</strong></span>
-          <span class="stat-pill">Zwycięstwa: <strong>${stats.wins.length}</strong> ${stats.wins.length > 0 ? `(Edycje: ${stats.wins.map(w => '#' + w).join(', ')})` : ''}</span>
+          <span class="stat-pill">Zwycięstwa: <strong>${stats.wins.length}</strong></span>
           <span class="stat-pill">Liczba reprezentantów: <strong>${stats.participants.length}</strong></span>
         </div>
 
-        <div class="page-controls" style="margin-bottom: 1rem;">
+        <div class="page-controls" style="margin-bottom: 0.75rem;">
           <div class="filter-input-wrap">
             <span class="filter-icon">🔍</span>
             <input type="text" id="pa-entries-filter" class="filter-input" placeholder="Szukaj...">
@@ -1233,14 +1358,14 @@
         </div>
 
         <div class="table-wrapper" style="margin-bottom: 0;">
-          <table class="responsive-table">
+          <table class="responsive-table" id="pa-entries-table">
             <thead>
               <tr>
-                <th style="width: 70px; text-align: center;">Edycja</th>
-                <th>Nazwa edycji</th>
-                <th style="width: 45px; text-align: center;">YT</th>
-                <th>Utwór</th>
-                <th>Uczestnik</th>
+                <th data-sort="edycja" style="width: 70px; text-align: center;">Edycja</th>
+                <th data-sort="nazwa">Nazwa edycji</th>
+                <th style="width: 45px; text-align: center; cursor: default;">YT</th>
+                <th data-sort="utwor">Utwór</th>
+                <th data-sort="uczestnik">Uczestnik</th>
               </tr>
             </thead>
             <tbody id="pa-entries-body"></tbody>
@@ -1251,10 +1376,11 @@
 
     const filterInput = document.getElementById('pa-entries-filter');
     const tableBody = document.getElementById('pa-entries-body');
+    const table = document.getElementById('pa-entries-table');
 
     function updateTable() {
       const q = (filterInput && filterInput.value ? filterInput.value : '').toLowerCase().trim();
-      let list = participations;
+      let list = participations.slice();
 
       if (q) {
         list = list.filter(u => {
@@ -1267,6 +1393,29 @@
             (user && user.nick.toLowerCase().includes(q));
         });
       }
+
+      const mult = sortDir === 'desc' ? -1 : 1;
+      list.sort((a, b) => {
+        if (sortCol === 'edycja') {
+          return (a.edycjaId - b.edycjaId) * mult;
+        }
+        if (sortCol === 'nazwa') {
+          const eA = INDEX.edMap.get(a.edycjaId)?.nazwa || '';
+          const eB = INDEX.edMap.get(b.edycjaId)?.nazwa || '';
+          return eA.localeCompare(eB, 'pl') * mult;
+        }
+        if (sortCol === 'utwor') {
+          const sA = INDEX.piMap.get(a.piosenkaId)?.utwor || '';
+          const sB = INDEX.piMap.get(b.piosenkaId)?.utwor || '';
+          return sA.localeCompare(sB, 'pl') * mult;
+        }
+        if (sortCol === 'uczestnik') {
+          const uA = INDEX.ucMap.get(a.uczestnikId)?.nick || '';
+          const uB = INDEX.ucMap.get(b.uczestnikId)?.nick || '';
+          return uA.localeCompare(uB, 'pl') * mult;
+        }
+        return 0;
+      });
 
       if (list.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="5" class="empty-state">Brak występów spełniających kryteria.</td></tr>`;
@@ -1302,6 +1451,19 @@
       }).join('');
     }
 
+    table.querySelectorAll('th[data-sort]').forEach(th => {
+      th.addEventListener('click', () => {
+        const col = th.getAttribute('data-sort');
+        if (sortCol === col) {
+          sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+          sortCol = col;
+          sortDir = col === 'edycja' ? 'desc' : 'asc';
+        }
+        updateTable();
+      });
+    });
+
     filterInput.addEventListener('input', updateTable);
     updateTable();
 
@@ -1320,6 +1482,9 @@
      ========================================================================== */
 
   function renderUczestnicy(container) {
+    let sortCol = 'nick';
+    let sortDir = 'asc';
+
     container.innerHTML = `
       <div class="page-header">
         <h1 class="page-title">👥 Uczestnicy</h1>
@@ -1333,14 +1498,14 @@
       </div>
 
       <div class="table-wrapper">
-        <table class="responsive-table">
+        <table class="responsive-table" id="users-table">
           <thead>
             <tr>
-              <th>Uczestnik</th>
-              <th style="width: 90px; text-align: center;">Edycje</th>
-              <th style="width: 95px; text-align: center;">Piosenki</th>
-              <th style="width: 100px; text-align: center;">Zwycięstwa</th>
-              <th>Prowadzone państwa</th>
+              <th data-sort="nick">Uczestnik</th>
+              <th data-sort="edycje" style="width: 80px; text-align: center;">Edycje</th>
+              <th data-sort="piosenki" style="width: 85px; text-align: center;">Piosenki</th>
+              <th data-sort="wygrane" style="width: 95px; text-align: center;">Zwycięstwa</th>
+              <th data-sort="kraje">Prowadzone państwa</th>
             </tr>
           </thead>
           <tbody id="users-table-body"></tbody>
@@ -1350,10 +1515,11 @@
 
     const filterInput = document.getElementById('users-filter');
     const tableBody = document.getElementById('users-table-body');
+    const table = document.getElementById('users-table');
 
     function updateUsersTable() {
       const q = STATE.participantSearch.toLowerCase().trim();
-      let list = DB.uczestnicy.slice().sort((a, b) => a.nick.localeCompare(b.nick, 'pl'));
+      let list = DB.uczestnicy.slice();
 
       if (q) {
         list = list.filter(u => {
@@ -1362,6 +1528,29 @@
           return stats && stats.countries.some(item => item.nazwa.toLowerCase().includes(q));
         });
       }
+
+      const mult = sortDir === 'desc' ? -1 : 1;
+      list.sort((a, b) => {
+        const stA = INDEX.participantStats.get(a.id) || { uniqueEditions: 0, totalSongs: 0, wins: [], countries: [] };
+        const stB = INDEX.participantStats.get(b.id) || { uniqueEditions: 0, totalSongs: 0, wins: [], countries: [] };
+
+        if (sortCol === 'nick') {
+          return a.nick.localeCompare(b.nick, 'pl') * mult;
+        }
+        if (sortCol === 'edycje') {
+          return (stA.uniqueEditions - stB.uniqueEditions) * mult;
+        }
+        if (sortCol === 'piosenki') {
+          return (stA.totalSongs - stB.totalSongs) * mult;
+        }
+        if (sortCol === 'wygrane') {
+          return (stA.wins.length - stB.wins.length) * mult;
+        }
+        if (sortCol === 'kraje') {
+          return (stA.countries.length - stB.countries.length) * mult;
+        }
+        return 0;
+      });
 
       if (list.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="5" class="empty-state">Brak uczestników spełniających kryteria.</td></tr>`;
@@ -1387,7 +1576,7 @@
               ${stats.totalSongs}
             </td>
             <td style="text-align: center;">
-              ${stats.wins.length > 0 ? `<span class="badge-winner">🏆 ${stats.wins.length}</span>` : '<span style="color:var(--text-muted);">-</span>'}
+              ${stats.wins.length > 0 ? `<strong class="win-count">🏆 ${stats.wins.length}</strong>` : '<span style="color:var(--text-muted);">-</span>'}
             </td>
             <td>
               <div class="tag-list">${countriesHtml || '-'}</div>
@@ -1396,6 +1585,19 @@
         `;
       }).join('');
     }
+
+    table.querySelectorAll('th[data-sort]').forEach(th => {
+      th.addEventListener('click', () => {
+        const col = th.getAttribute('data-sort');
+        if (sortCol === col) {
+          sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+          sortCol = col;
+          sortDir = (col === 'edycje' || col === 'piosenki' || col === 'wygrane' || col === 'kraje') ? 'desc' : 'asc';
+        }
+        updateUsersTable();
+      });
+    });
 
     filterInput.addEventListener('input', (e) => {
       STATE.participantSearch = e.target.value;
@@ -1417,7 +1619,9 @@
     }
 
     const stats = INDEX.participantStats.get(id) || { uniqueEditions: 0, totalSongs: 0, wins: [], countries: [] };
-    const participations = (INDEX.udByUc.get(id) || []).slice().sort((a, b) => b.edycjaId - a.edycjaId);
+    const participations = (INDEX.udByUc.get(id) || []).slice();
+    let sortCol = 'edycja';
+    let sortDir = 'desc';
     const sortedUserList = DB.uczestnicy;
     const currentIdx = sortedUserList.findIndex(u => u.id === id);
 
@@ -1425,7 +1629,7 @@
       <div class="detail-card">
         <div class="detail-header-row">
           <div>
-            <div style="font-size: 0.9rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em;">Profil Uczestnika</div>
+            <div style="font-size: 0.85rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em;">Profil Uczestnika</div>
             <h1 class="page-title" style="margin: 0;">👤 ${escapeHtml(user.nick)}</h1>
           </div>
           <div class="detail-nav-buttons">
@@ -1435,14 +1639,14 @@
           </div>
         </div>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem;">
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
           <span class="stat-pill">Udziały w edycjach: <strong>${stats.uniqueEditions}</strong></span>
           <span class="stat-pill">Zgłoszone piosenki: <strong>${stats.totalSongs}</strong></span>
-          <span class="stat-pill">Zwycięstwa: <strong>${stats.wins.length}</strong> ${stats.wins.length > 0 ? `(Edycje: ${stats.wins.map(w => '#' + w).join(', ')})` : ''}</span>
+          <span class="stat-pill">Zwycięstwa: <strong>${stats.wins.length}</strong></span>
           <span class="stat-pill">Reprezentowane kraje: <strong>${stats.countries.length}</strong></span>
         </div>
 
-        <div class="page-controls" style="margin-bottom: 1rem;">
+        <div class="page-controls" style="margin-bottom: 0.75rem;">
           <div class="filter-input-wrap">
             <span class="filter-icon">🔍</span>
             <input type="text" id="uc-entries-filter" class="filter-input" placeholder="Szukaj...">
@@ -1450,14 +1654,14 @@
         </div>
 
         <div class="table-wrapper" style="margin-bottom: 0;">
-          <table class="responsive-table">
+          <table class="responsive-table" id="uc-entries-table">
             <thead>
               <tr>
-                <th style="width: 70px; text-align: center;">Edycja</th>
-                <th>Nazwa edycji</th>
-                <th style="width: 45px; text-align: center;">YT</th>
-                <th>Utwór</th>
-                <th>Państwo</th>
+                <th data-sort="edycja" style="width: 70px; text-align: center;">Edycja</th>
+                <th data-sort="nazwa">Nazwa edycji</th>
+                <th style="width: 45px; text-align: center; cursor: default;">YT</th>
+                <th data-sort="utwor">Utwór</th>
+                <th data-sort="panstwo">Państwo</th>
               </tr>
             </thead>
             <tbody id="uc-entries-body"></tbody>
@@ -1468,10 +1672,11 @@
 
     const filterInput = document.getElementById('uc-entries-filter');
     const tableBody = document.getElementById('uc-entries-body');
+    const table = document.getElementById('uc-entries-table');
 
     function updateTable() {
       const q = (filterInput && filterInput.value ? filterInput.value : '').toLowerCase().trim();
-      let list = participations;
+      let list = participations.slice();
 
       if (q) {
         list = list.filter(u => {
@@ -1484,6 +1689,29 @@
             (country && country.nazwa.toLowerCase().includes(q));
         });
       }
+
+      const mult = sortDir === 'desc' ? -1 : 1;
+      list.sort((a, b) => {
+        if (sortCol === 'edycja') {
+          return (a.edycjaId - b.edycjaId) * mult;
+        }
+        if (sortCol === 'nazwa') {
+          const eA = INDEX.edMap.get(a.edycjaId)?.nazwa || '';
+          const eB = INDEX.edMap.get(b.edycjaId)?.nazwa || '';
+          return eA.localeCompare(eB, 'pl') * mult;
+        }
+        if (sortCol === 'utwor') {
+          const sA = INDEX.piMap.get(a.piosenkaId)?.utwor || '';
+          const sB = INDEX.piMap.get(b.piosenkaId)?.utwor || '';
+          return sA.localeCompare(sB, 'pl') * mult;
+        }
+        if (sortCol === 'panstwo') {
+          const pA = INDEX.paMap.get(a.panstwoId)?.nazwa || '';
+          const pB = INDEX.paMap.get(b.panstwoId)?.nazwa || '';
+          return pA.localeCompare(pB, 'pl') * mult;
+        }
+        return 0;
+      });
 
       if (list.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="5" class="empty-state">Brak zgłoszeń spełniających kryteria.</td></tr>`;
@@ -1519,6 +1747,19 @@
         `;
       }).join('');
     }
+
+    table.querySelectorAll('th[data-sort]').forEach(th => {
+      th.addEventListener('click', () => {
+        const col = th.getAttribute('data-sort');
+        if (sortCol === col) {
+          sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+          sortCol = col;
+          sortDir = col === 'edycja' ? 'desc' : 'asc';
+        }
+        updateTable();
+      });
+    });
 
     filterInput.addEventListener('input', updateTable);
     updateTable();
