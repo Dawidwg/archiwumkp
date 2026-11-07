@@ -615,15 +615,6 @@
           <span class="stat-pill">Zgłoszone piosenki: <strong>${stats.totalSongs}</strong></span>
           <span class="stat-pill">Zwycięstwa: <strong class="win-count">🏆 ${stats.wins.length}</strong></span>
         </div>
-        <div style="font-size:0.85rem; color:var(--text-muted);">
-          <div style="margin-bottom:0.35rem;">Reprezentowane kraje (${stats.countries.length}):</div>
-          <div class="tag-list">
-            ${stats.countries.slice(0, 10).map(c => `
-              <a href="#/panstwo/${c.id}" class="pill-link">${renderFlag(c)} ${escapeHtml(c.nazwa)} (${c.count})</a>
-            `).join('') || '<span style="color:var(--text-muted);">brak</span>'}
-            ${stats.countries.length > 10 ? `<a href="#/uczestnik/${user.id}" class="pill-link" style="color:var(--primary); font-weight:600;">+${stats.countries.length - 10} więcej...</a>` : ''}
-          </div>
-        </div>
       </div>
     `;
   }
